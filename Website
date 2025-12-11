@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5050 LBX | Two Vibes. One Spot. | Long Beach</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A5C36; /* 5050 Green */
+            --secondary: #D4AF37; /* Crown Gold */
+            --dark: #0F1C2D; /* Night Blue */
+            --accent: #00E5FF; /* Highlight Cyan */
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 92, 54, 0.95);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 28, 45, 0.8), rgba(15, 28, 45, 0.9)), url('https://images.unsplash.com/photo-1515168833906-d2a3b82b5f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero-tagline {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--secondary);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        /* Mission Statement */
+        .mission {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .mission h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+        
+        .mission-statement {
+            font-size: 1.8rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--primary);
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* Concept Section */
+        .concept {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+        
+        .concept-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .concept-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .concept-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .day-image {
+            background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+        }
+        
+        .night-image {
+            background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+        }
+        
+        .concept-content {
+            padding: 30px;
+        }
+        
+        .concept-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .concept-hours {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Membership Section */
+        .membership {
+            padding: 100px 0;
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .membership .section-title {
+            color: white;
+        }
+        
+        .membership-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tiers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .tier {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tier:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .tier-popular {
+            transform: scale(1.05);
+            border: 2px solid var(--secondary);
+        }
+        
+        .tier-name {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .tier-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .tier-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .tier-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .tier-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tier-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .tier-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .tier-button:hover {
+            background-color: #e6b416;
+        }
+        
+        /* Waitlist Section */
+        .waitlist {
+            padding: 100px 0;
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .waitlist h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .waitlist-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--gray);
+        }
+        
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #ddd;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .form-button:hover {
+            background-color: #084428;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+            
+            .mission-statement {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .mission-statement {
+                font-size: 1.3rem;
+            }
+            
+            .tier-popular {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button, .form-button {
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-text">5050 LBX</div>
+                <div class="logo-subtitle">TWO VIBES • ONE SPOT</div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#concept">Concept</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#waitlist" class="cta-button" style="padding: 8px 20px;">Join Waitlist</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>5050 LBX</h1>
+            <div class="hero-tagline">TWO VIBES. ONE SPOT.</div>
+            <p class="hero-subtitle">Long Beach's first Black- and LGBTQ+-owned dual-concept venue. By day: a family-friendly pool lounge & mentorship space. By night: an upscale queer nightlife destination on Historic Pine Avenue.</p>
+            <a href="#waitlist" class="cta-button">Become a Founding Member</a>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p class="mission-statement">"This is personal. This is cultural. This is necessary. We're not asking the city to make space for us. We're making the space—and everyone's invited."</p>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section class="concept" id="concept">
+        <div class="container">
+            <h2 class="section-title">The 5050 Experience</h2>
+            <div class="concept-container">
+                <!-- Day Concept -->
+                <div class="concept-card">
+                    <div class="concept-image day-image"></div>
+                    <div class="concept-content">
+                        <h3 class="concept-title">DAYTIME VIBE</h3>
+                        <div class="concept-hours">11 AM - 9 PM • All Ages</div>
+                        <p>10 Brunswick pool tables, arcade games, light food & mocktails, youth mentorship corner, and a welcoming environment for CSULB students, families, and downtown workers.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>$8–$12/hour table rentals</li>
+                            <li>Locals-first pricing</li>
+                            <li>Free community hours</li>
+                            <li>Student & family friendly</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Night Concept -->
+                <div class="concept-card">
+                    <div class="concept-image night-image"></div>
+                    <div class="concept-content">
+                        <h3 class="concept-title">NIGHTTIME VIBE</h3>
+                        <div class="concept-hours">9 PM - 2 AM • 18+</div>
+                        <p>Tables convert to black felt with LED underglow, weekly drag performances, DJs, the Crown Table VIP dais, full bar with bottle service, and an upscale queer nightlife experience.</p>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>Crown Table VIP experience</li>
+                            <li>Weekly drag shows</li>
+                            <li>Full craft cocktail bar</li>
+                            <li>Upscale nightlife</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section class="membership" id="membership">
+        <div class="container">
+            <h2 class="section-title">Join The 5050 Circle</h2>
+            <p class="membership-subtitle">Be part of history. Our founding membership tiers offer exclusive access, perks, and the opportunity to shape Long Beach's newest cultural landmark.</p>
+            
+            <div class="tiers-container">
+                <!-- Free Tier -->
+                <div class="tier">
+                    <h3 class="tier-name">LOCALS CIRCLE</h3>
+                    <div class="tier-price">FREE</div>
+                    <ul class="tier-features">
+                        <li>Locals-only pricing</li>
+                        <li>Early access to event announcements</li>
+                        <li>Monthly newsletter</li>
+                        <li>908xx resident discount</li>
+                    </ul>
+                    <a href="#waitlist" class="tier-button">Join Free</a>
+                </div>
+                
+                <!-- Premium Tier -->
+                <div class="tier tier-popular">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--secondary); color: var(--dark); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;">MOST POPULAR</div>
+                    <h3 class="tier-name">FOUNDING MEMBER</h3>
+                    <div class="tier-price">$25<span>/month</span></div>
+                    <ul class="tier-features">
+                        <li>3 free pool hours per month</li>
+                        <li>Skip-the-line entry</li>
+                        <li>15% off food & merch</li>
+                        <li>Exclusive "Members Only Mondays"</li>
+                        <li>Name on Founders Wall</li>
+                        <li>Birthday shoutout on Crown Table</li>
+                    </ul>
+                    <a href="#waitlist" class="tier-button">Become a Founder</a>
+                </div>
+                
+                <!-- VIP Tier -->
+                <div class="tier">
+                    <h3 class="tier-name">VIP KEYHOLDER</h3>
+                    <div class="tier-price">$100<span>/month</span></div>
+                    <ul class="tier-features">
+                        <li>All Founding Member perks</li>
+                        <li>Unlimited pool during off-peak</li>
+                        <li>Monthly bottle service credit</li>
+                        <li>Personalized cue storage</li>
+                        <li>Private event discounts</li>
+                        <li>Name engraved on Crown Table</li>
+                    </ul>
+                    <a href="#waitlist" class="tier-button">Become VIP</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <h2>Be The First To Know</h2>
+            <p class="waitlist-subtitle">Join our exclusive waitlist for early access, founding member rates, and updates on our progress toward opening on Historic Pine Avenue.</p>
+            
+            <form class="waitlist-form" id="waitlistForm">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Zip Code" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-input" required>
+                        <option value="" disabled selected>Select Membership Interest</option>
+                        <option value="free">Free Locals Circle</option>
+                        <option value="founder">Founding Member ($25/month)</option>
+                        <option value="vip">VIP Keyholder ($100/month)</option>
+                        <option value="investor">Investor Inquiry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="form-button">Join the 5050 Circle</button>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-top: 15px;">By joining, you agree to receive updates about 5050 LBX. We respect your privacy.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">5050 LBX</div>
+                    <p class="footer-about">Long Beach's first Black- and LGBTQ+-owned dual-concept pool lounge and nightlife venue, coming soon to Historic Pine Avenue.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-container">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="#concept">The Concept</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                        <li><a href="#waitlist">Join Waitlist</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> 5050LBXLLC@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 200 Pine Avenue, Long Beach, CA</li>
+                        <li><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Coming 2026</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 5050 LBX LLC. All rights reserved. | This is personal. This is cultural. This is necessary.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Form submission
+        const waitlistForm = document.getElementById('waitlistForm');
+        waitlistForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(waitlistForm);
+            const name = waitlistForm.querySelector('input[type="text"]').value;
+            const email = waitlistForm.querySelector('input[type="email"]').value;
+            
+            // In a real application, you would send this data to a server
+            // For now, we'll show a success message
+            alert(`Thank you, ${name}! You've joined the 5050 LBX waitlist. We'll contact you at ${email} with updates. Welcome to the circle!`);
+            
+            // Reset form
+            waitlistForm.reset();
+            
+            // In reality, you would send this to your backend
+            // Example: fetch('/api/waitlist', { method: 'POST', body: formData })
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
